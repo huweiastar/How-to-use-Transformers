@@ -28,7 +28,6 @@ from torch import nn
 from torch.utils.data import Dataset, DataLoader
 from transformers import AutoTokenizer, AutoConfig
 from transformers import BertPreTrainedModel, BertModel
-# from transformers import AdamW, get_scheduler
 from transformers import get_scheduler
 from torch.optim import AdamW  # 与 transformers.AdamW 等价，且无 deprecation 警告
 from tqdm.auto import tqdm
@@ -111,12 +110,7 @@ valid_data = AFQMC('/Users/huwei/PyCharmMiscProject/How-to-use-Transformers/data
 # -----------------------------------------------------------------------------
 # DataLoader 每次取出 batch_size 个样本，默认它会用 torch.stack 尝试堆叠，
 # 但我们的样本是 dict 而且长度不一，所以必须写自定义 collate_fn。
-#
-# 这里用 tokenizer 一次编码两句，它会自动：
-#   - 拼成 [CLS] sent1 [SEP] sent2 [SEP]
-#   - 输出 input_ids / attention_mask / token_type_ids
-#   - padding=True：只把本 batch 内补齐到最长长度（动态 padding，效率高）
-#   - truncation=True：超过模型最大长度时自动截断
+
 def collote_fn(batch_samples):
     batch_sentence_1, batch_sentence_2 = [], []
     batch_label = []
@@ -136,6 +130,8 @@ def collote_fn(batch_samples):
 
 
 # 训练集 shuffle=True 打乱顺序，验证集不用打乱
+# 训练集：打乱 → 学得稳、学得好
+# 验证集：不打乱 → 评得准、可复现
 train_dataloader = DataLoader(train_data, batch_size=batch_size, shuffle=True, collate_fn=collote_fn)
 valid_dataloader = DataLoader(valid_data, batch_size=batch_size, shuffle=False, collate_fn=collote_fn)
 

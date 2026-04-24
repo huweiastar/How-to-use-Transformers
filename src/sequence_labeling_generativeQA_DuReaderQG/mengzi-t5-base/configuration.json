@@ -1,0 +1,11 @@
+{
+    "framework": "pytorch",
+    "task": "text2text-generation",
+    "model": {
+        "type": "T5",
+        "language": "zh"
+    },
+    "pipeline": {
+        "type": "text2text-generation"
+    }
+}

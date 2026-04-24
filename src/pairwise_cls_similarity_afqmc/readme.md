@@ -79,3 +79,7 @@ bash run_simi_roberta.sh    # 训练 RoBERTa（哈工大权重）
 | 更换预训练模型 | 换 `checkpoint` 字符串即可（如 `hfl/chinese-roberta-wwm-ext`） |
 
 数据加载、训练循环、保存策略**不需要动**——这正是把代码拆成 `data.py / modeling.py / run_*.py` 的意义。
+
+注意
+- 分类（离散类别 0/1/2…）→ CrossEntropyLoss
+- 回归（连续数值 3.14 / 5.2 / 0.8…）→ MSELoss

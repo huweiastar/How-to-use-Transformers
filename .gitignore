@@ -6,6 +6,11 @@ _site/
 .bundle/
 vendor/
 
+# Large model weights (too big for GitHub, use Git LFS or external storage)
+*.bin
+*.safetensors
+*.pt
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

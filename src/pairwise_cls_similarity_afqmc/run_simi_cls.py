@@ -14,15 +14,12 @@ run_simi_cls.py —— 工程化的训练/测试/预测入口脚本
      这是 BERT 微调的惯例，能轻微提升效果）
   5. 学习率带 warmup 预热阶段（先线性升到峰值，再线性降到 0）
 
-【阅读建议】先读懂 pipeline.py 再读这个文件——你会发现结构完全对应，
-只是把 train / test / predict 各自抽成了函数，并把超参数外置而已。
 ================================================================
 """
 import os
 import logging
 import json
 import torch
-# from transformers import AdamW, get_scheduler
 from transformers import get_scheduler
 from torch.optim import AdamW  # PyTorch 原生AdamW，完全等价
 from transformers import AutoConfig, AutoTokenizer

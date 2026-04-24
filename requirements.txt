@@ -3,3 +3,7 @@ torch
 scikit-learn
 transformers
 tqdm
+rouge
+sentencepiece
+tiktoken
+protobuf

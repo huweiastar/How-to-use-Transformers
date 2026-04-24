@@ -1,5 +1,5 @@
 export OUTPUT_DIR=./summ_mt5_results/
-
+# mT5 = 多语言 T5 = Encoder-Decoder + 101 种语言 + 更大词表
 python3 run_summarization_mt5.py \
     --output_dir=$OUTPUT_DIR \
     --model_type=mT5 \
